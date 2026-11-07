@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/*
+ * LearnVault design tokens.
+ * Warm stone neutrals with a single teal accent. Every component reads these
+ * semantic tokens, so the palette can be retuned from one place.
+ */
+:root {
+  --background: #fafaf9;
+  --surface: #ffffff;
+  --surface-muted: #f5f5f4;
+  --surface-sunken: #efeeec;
+  --border: #e7e5e4;
+  --border-strong: #d6d3d1;
+  --foreground: #1c1917;
+  --foreground-muted: #57534e;
+  --foreground-subtle: #736b65;
+  --accent: #0f766e;
+  --accent-hover: #115e59;
+  --accent-soft: #e6f4f1;
+  --accent-foreground: #ffffff;
+  --ring: #14b8a6;
+  --level-beginner: #15803d;
+  --level-intermediate: #b45309;
+  --level-advanced: #be123c;
+  --shadow-color: 28 25 23;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0c0a09;
+    --surface: #151311;
+    --surface-muted: #1c1917;
+    --surface-sunken: #110f0e;
+    --border: #292524;
+    --border-strong: #3d3835;
+    --foreground: #f5f5f4;
+    --foreground-muted: #a8a29e;
+    --foreground-subtle: #8f8782;
+    --accent: #2dd4bf;
+    --accent-hover: #5eead4;
+    --accent-soft: #10302c;
+    --accent-foreground: #042f2e;
+    --ring: #2dd4bf;
+    --level-beginner: #4ade80;
+    --level-intermediate: #fbbf24;
+    --level-advanced: #fb7185;
+    --shadow-color: 0 0 0;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--foreground);
+  --color-fg-muted: var(--foreground-muted);
+  --color-fg-subtle: var(--foreground-subtle);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-foreground);
+  --color-ring: var(--ring);
+  --color-level-beginner: var(--level-beginner);
+  --color-level-intermediate: var(--level-intermediate);
+  --color-level-advanced: var(--level-advanced);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --shadow-card: 0 1px 2px rgb(var(--shadow-color) / 0.04), 0 1px 1px rgb(var(--shadow-color) / 0.03);
+  --shadow-raised: 0 8px 24px -8px rgb(var(--shadow-color) / 0.12), 0 2px 6px -2px rgb(var(--shadow-color) / 0.06);
+
+  --animate-fade-in: fade-in 0.24s ease-out both;
+  --animate-slide-in: slide-in 0.22s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility bg-dot-grid {
+  background-image: radial-gradient(var(--border-strong) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
